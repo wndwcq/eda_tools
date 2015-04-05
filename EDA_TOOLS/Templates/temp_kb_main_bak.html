@@ -10,24 +10,8 @@
             <form action="" method="get" class="form-search">
                 <div class="input-append">
                     <input type="text" class="col-md-4 col-md-offset-2 input-sm search-query" name="what" value="{{ search }}">
-                    <button type="submit" class="btn btn-primary btn-sm col-md-offset-1 "><span class="glyphicon glyphicon-search" class="badge"></span>  搜索摘要</button>
-                    <!--
-                    <div class="btn-group">
-                        <button id="kb_serch" type="submit" class="btn btn-primary" name="type" value="SUMM"><span>搜索摘要</span></button>
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span> 
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class = "kb_serch_button" data-type="CONT" data-name="搜索内容"><a href="#">搜索内容</a></li>
-                            <li class = "kb_serch_button" data-type="SUMM" data-name="搜索摘要"><a href="#">搜索摘要</a></li>
-                            <li class = "kb_serch_button" data-type="TITLE" data-name="搜索标题"><a href="#">搜索标题</a></li>
-                        </ul>
-                    </div>
-                    -->
+                    <button type="submit" class="btn btn-primary btn-sm col-md-offset-1">搜索摘要</button>
                 </div>
-                <!-- Single button   -->
-                  
            </form>            
         </div>
     {% if is_login %}    <!-- 有权限的用户才能增加记录 -->
@@ -53,7 +37,6 @@
                 </div>
                 <div id="tttt" class="record_botton panel-footer" > 
                     <div>
-                        <!--- 点赞操作 -->
                         <button id="you" class="make_a_thumb btn btn-danger" type="button" data-time={{aRow.good_time}}><span class="glyphicon glyphicon-heart-empty" class="badge"> </span>   {{ aRow.good_time}}   </button>
                     </div>
                 </div>

@@ -1,0 +1,16 @@
+{% extends "temp_base.html" %}
+
+<!-- 本模版基于主页，将内容区分为左右两部分，便于展示不同的内容 -->
+{% block container %}
+    <!--             副内容区           --->
+    <div id="container_left" class="col-md-0">
+        {% block container_left %}                       
+        {% endblock %}
+    </div>
+
+    <!--             主内容区           --->
+    <div id="container_right" class="col-md-12">
+        {% block main_content %}                       
+        {% endblock %}
+    </div> 
+{% endblock %}

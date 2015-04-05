@@ -19,7 +19,7 @@ $(document).ready(function() {
 
     /* -----    点赞操作 ---------*/
     $('.make_a_thumb').click(function(){
-        //alert("test  test !!!")
+        alert("test  test !!!")
         $(this).attr("disabled","true")
         // -- 使用Ajax技术，在后台对点赞结果加1
         $.get('/kb_make_thumb','kbid=' + $(this).parent().parent().parent().attr("id") )
@@ -30,13 +30,13 @@ $(document).ready(function() {
     
     /* ---- 知识库的搜素下拉菜单处理 ----*/
     $('.kb_serch_button').click(function(){
-        $('#kb_serch').attr("value",$(this).attr("data-type"))
-        //alert($(this).attr("data-type") + "0000" + $(this).attr("data-name"))
-        $('#kb_serch').html("<span>" + $(this).attr("data-name") + "</span>")
+        $('#kb_serch').attr("value") = $(this).attr("data-type")
+        alert($(this).attr("data-name"))
+        $('#kb_serch').html($(this).attr("data-name"))
     });
     
     $('#kb_serch').click(function(){
-        alert("test!!" + $(this).attr("value") + "   " + $(this).attr("name"))
+        alert("test!!")
     })
      
 }); // end ready

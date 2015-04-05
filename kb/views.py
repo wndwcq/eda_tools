@@ -148,8 +148,14 @@ def delete_a_kb_record(request):
         p.save()
         return HttpResponse('<html><body><a href = "/kb/">删除成功</a></body></html>')
     return HttpResponse('<html><body><a href = "/kb/">ERROR:调用异常</a></body></html>')     
-        
+
+#   知识库的记录进行点赞数量的累加    
 def kb_make_a_thumb(request):
     if request.is_ajax():
-        print "OK"
+        row_no = request.GET.get('kbid')
+        p = Record.objects.get(id = row_no)
+        p.good_time += 1
+        p.save()
+        # 记录使用日志
+        use_logger.debug("KB:MakeThumb:OK" + "-" + request.user.username + "-" + request.META['REMOTE_ADDR'] + "thumb record_id = " + str(p.id))
     return
