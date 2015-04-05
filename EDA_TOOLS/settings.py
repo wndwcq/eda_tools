@@ -1,7 +1,7 @@
 #-*- coding: UTF-8 -*-
 
 """
-Django settings for EDA_TOOLS project.
+Django settings for eda_tools project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -28,7 +28,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*',]
 
-STATIC_ROOT = 'D:/mycode/django/EDA_TOOLS/EDA_TOOLS/static/'    #add by weining for static 
+STATIC_ROOT = 'E:/mycode/django/eda_tools/eda_tools/static/'    #add by weining for static 
 STATIC_URL = 'http://127.0.0.1:8000/static/'
 
 # Application definition
@@ -53,9 +53,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'EDA_TOOLS.urls'
+ROOT_URLCONF = 'eda_tools.urls'
 
-WSGI_APPLICATION = 'EDA_TOOLS.wsgi.application'
+WSGI_APPLICATION = 'eda_tools.wsgi.application'
 
 
 # Database
@@ -97,10 +97,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_URL = 'D:/mycode/django/EDA_TOOLS/EDA_TOOLS/static/'
-MEDIA_ROOT = 'D:/mycode/django/EDA_TOOLS/EDA_TOOLS/static/upfiles'
+#STATIC_URL = 'E:/mycode/django/eda_tools/eda_tools/static/'
+MEDIA_ROOT = 'E:/mycode/django/app_date/eda_tools_upfile'
 
-TEMPLATE_DIRS = ('D:/mycode/django/EDA_TOOLS/EDA_TOOLS/Templates',)   #add by weining
+TEMPLATE_DIRS = ('E:/mycode/django/eda_tools/eda_tools/Templates',)   #add by weining
 
 
 # add by weining
@@ -116,31 +116,31 @@ LOGGING = {
                        'file':{
                                'level':'DEBUG',
                                'class':'logging.FileHandler',
-                               'filename':'D:/mycode/django/EDA_TOOLS/log/debug.log',
+                               'filename':'E:/mycode/django/app_date/eda_tools_log/debug.log',
                                'formatter':'simple'                    
                                },
                        'dbfile':{
                                  'level':'DEBUG',
                                  'class':'logging.FileHandler',
-                                 'filename':'D:/mycode/django/EDA_TOOLS/log/db_debug.log',
+                                 'filename':'E:/mycode/django/app_date/eda_tools_log/db_debug.log',
                                  'formatter':'simple'
                                  },
                        'runfile':{
                                   'level':'DEBUG',
                                   'class':'logging.FileHandler',
-                                  'filename':'D:/mycode/django/EDA_TOOLS/log/run.log',
+                                  'filename':'E:/mycode/django/app_date/eda_tools_log/run.log',
                                   'formatter':'simple'
                                   },
                        'use_log_file':{            #用来记录用户使用行为
                                        'level':'DEBUG',
                                        'class':'logging.FileHandler',
-                                       'filename':'D:/mycode/django/EDA_TOOLS/log/use_log.log',
+                                       'filename':'E:/mycode/django/app_date/eda_tools_log/use_log.log',
                                        'formatter':'simple'
                                        },
                        'search_file':{               #用来记录用户搜索关键字
                                        'level':'DEBUG',
                                        'class':'logging.FileHandler',
-                                       'filename':'D:/mycode/django/EDA_TOOLS/log/search.log',
+                                       'filename':'E:/mycode/django/app_date/eda_tools_log/search.log',
                                        'formatter':'simple'
                                        },
                        },
