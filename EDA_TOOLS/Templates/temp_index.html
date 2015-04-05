@@ -1,0 +1,20 @@
+{% extends "temp_base.html" %}
+
+{% block title %}日常工作工具 - 首页 {% endblock%}</title>
+{% block main_content %}
+    <div id="left_top" class="left_top">
+    </div>
+    <div id="left_content" class="in">  
+       
+    </div>
+{% endblock %}
+
+{% block login %}
+    <form action="" method="post" class="navbar-form navbar-right">
+        <label class="sr-only" for="login_uname">账号</label>
+        <input type="text" name="uname" class="col-md-4 input-sm" id="login_uname" placeholder="您的帐号">
+        <label class="sr-only" for="login_upwd">密码</label>
+        <input type="password" name="upwd" class="col-md-4 input-sm col-md-offset-1" id="login_upwd" placeholder="您的密码">
+        <button type="submit" class="btn btn-danger btn-sm col-md-offset-1">登录</button>
+    </form> 
+{% endblock %}

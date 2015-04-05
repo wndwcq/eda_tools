@@ -1,0 +1,35 @@
+
+/* content */
+#header {
+    width: 100%;
+    background: #417690;
+    color: #ffc;
+    overflow: hidden;
+}
+
+
+#content {
+    width:100%;
+    background:green;
+    color: #ffc;
+    border:dashed;
+    overflow: hidden;
+}
+
+#nav_left {
+    width: 30%;
+    float:left;
+    background: #417690;
+    color: #ffc;
+    border:dashed;
+    overflow: hidden;
+}
+
+#content_main {
+    width: 70%;
+    float:right;
+    background: #417690;
+    color: #ffc;
+    overflow: hidden;
+}
+

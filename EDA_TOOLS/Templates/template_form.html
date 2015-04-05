@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+    <title>Contact us</title>
+</head>
+<body>
+    <h1>{% block title %} {% endblock %}</h1>
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+    
+    <form action="" method="post"> 
+        {{ form.as_p }}
+        <input type="submit" value="保存">
+    </form>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends "temp_base.html" %}
+
+<!--    知识库的首页  默认按照时间顺序列出所有的记录 --->
+
+{% block title %} 知识库 {% endblock%}</title>
+{% block main_content %}
+    <div id="left_top" class="row well well-sm" >
+        <div class="login_content col-md-6 col-md-offset-4">
+            <form action="" method="get" class="form-search">
+                <div class="input-append">
+                    <input type="text" class="col-md-4 col-md-offset-2 input-sm search-query" name="what" value="{{ search }}">
+                    <button type="submit" class="btn btn-primary btn-sm col-md-offset-1">搜索摘要</button>
+                </div>
+           </form>            
+        </div>
+    {% if is_login %}    <!-- 有权限的用户才能增加记录 -->
+        <a id="add_kb_record" href="/add_a_kb_record/" class="btn btn-default  btn-xs" role="button"> <span class="glyphicon glyphicon-plus"></span>加一条</a></li>    
+    {% endif %}
+    </div>
+
+    <div id="left_content" class="in"> 
+        <div>
+            <!-----显示信息记录 --------->
+            {% for aRow in allRow %}
+            <div id="{{ aRow.id }}" class="kb_record_list panel panel-primary">
+                <div class="record_head panel-heading">
+                    <h4>{{ aRow.title}}</h4>
+                    <h6>{{ aRow.contrib}} 创建于 {{ aRow.creat_time }}  最后修改 {{ aRow.update_time }}</h6>
+                </div>
+                <div class=" panel-body"><h5 class="text-defau"><span class="label label-default"> 摘要 </span>{{ aRow.summary }}</h5></div>
+                <div id="{{ aRow.id }}" class="record_detail panel-body">
+                    <pre>{{ aRow.detail|safe }}</pre>
+                    {% if aRow.addi_file %}
+                         <a href = '/site_media/{{ aRow.addi_file }}'>附件： {{ aRow.addi_file }}</a>                 
+                    {% endif %}        
+                </div>
+                <div class="record_botton panel-footer"> 
+                    <div>
+                        <button class="make_a_thumb btn btn-primary" type="button"><span class="glyphicon glyphicon-heart-empty" class="badge"> </span>   {{ aRow.good_time}}   </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <!------ 翻页功能--------->
+            <div class="pagin">
+                <ul class="pagination">
+                {% if allRow.has_previous %}
+                    <li><a href="?page=1&what={{ search }}">&laquo;</a></li>
+                    <li><a href="?page={{ allRow.previous_page_number }}&what={{ search }}">前一页 </a></li>
+                {% endif %}
+                    <li><span class="current">
+                        Page {{ allRow.number }} of {{ allRow.paginator.num_pages }} 共计{{ allRow.paginator.count }}条                       
+                    </span></li>
+                {% if allRow.has_next %}
+                    <li><a href="?page={{ allRow.next_page_number }}&what={{ search }}"> 后一页</a></li>
+                    <li><a href="?page={{ allRow.paginator.num_pages}}&what={{ search }}">&raquo;</a></li>
+                {% endif %}                    
+                </ul>                
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block top_panel %}
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <!---- <link  href="/site_static/css/sites.css" type="text/css" rel="stylesheet" media="screen,projection" />-->
+    <script src="/site_static/js/jquery-1.7.2.min.js"></script>
+    <script src="/site_static/js/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="/site_static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!--  my code ---------------------------->
+    <script src="/site_static/js/site.js"></script>           
+    <!---------------------------------------->
+    <title> {% block title %}BASE PAGE{% endblock%}</title>
+</head>
+    
+    <body>
+        <div id="layout" class="row-fluid">
+            <div class="span12">
+            <h3>{% block head %}{% endblock %}</h3>
+            
+            {% if form.errors %}
+            <p style="color: red;">
+                Please correct the error{{ form.errors|pluralize }} below.
+            </p>            
+            {% endif %}
+            
+            {% block form %}
+                              
+            {%  endblock %}
+            </div>            
+        </div>
+    </body>
+</html>
