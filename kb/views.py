@@ -12,9 +12,12 @@ from kb.forms import RecordForm
 from django.shortcuts import  render_to_response,render
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 import datetime
 import logging
+import json
 
 # Create your views here.
 logger = logging.getLogger('my_log')
@@ -140,6 +143,7 @@ def update_a_kb_record(request):
         
     return HttpResponseRedirect('/kb/')
 
+
 def delete_a_kb_record(request):   
     if request.method == 'GET':
         row_no = request.GET.get('Row')
@@ -150,12 +154,22 @@ def delete_a_kb_record(request):
     return HttpResponse('<html><body><a href = "/kb/">ERROR:调用异常</a></body></html>')     
 
 #   知识库的记录进行点赞数量的累加    
+@csrf_exempt
 def kb_make_a_thumb(request):
     if request.is_ajax():
-        row_no = request.GET.get('kbid')
+        row_no = request.POST.get('kbid',None)
         p = Record.objects.get(id = row_no)
-        p.good_time += 1
-        p.save()
-        # 记录使用日志
-        use_logger.debug("KB:MakeThumb:OK" + "-" + request.user.username + "-" + request.META['REMOTE_ADDR'] + "thumb record_id = " + str(p.id))
-    return
+        
+        if  p.contrib != request.user.username: 
+            p.good_time += 1
+            p.save()
+            # 记录使用日志
+            use_logger.debug("KB:MakeThumb:OK" + "-" + request.user.username + "-" + request.META['REMOTE_ADDR'] + "thumb record_id = " + str(p.id))
+            return HttpResponse(json.dumps({"msg":"OK"}),content_type="application/json")
+        else:
+            # 记录使用日志
+            use_logger.debug("KB:MakeThumb:ERROR thumb by self" + "-" + request.user.username + "-" + request.META['REMOTE_ADDR'] + "thumb record_id = " + str(p.id))
+            return HttpResponse(json.dumps({"msg":"NO_YOUSELF"}),content_type="application/json")     #用户不能自己给自己点赞            
+        
+    return HttpResponse(json.dumps({"msg":"ERROR"}),content_type="application/json")
+    

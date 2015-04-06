@@ -1,0 +1,60 @@
+    $('.make_a_thumb').click(function(){
+        alert("you are in make_a_thumb")
+        $(this).attr("disabled","true")       
+        // -- 使用Ajax技术，在后台对点赞结果加1
+        $.post('/kb_make_thumb','
+            kbid=' + $(this).parent().parent().parent().attr("id"),
+            function(data,status){
+                if (status == "success"){
+                    alert( "return is " + data.msg)
+                    switch(data.msg)
+                    {
+                    case "OK":
+                        alert("success")
+                        
+                        var time = $(this).attr("data-time");
+                        $(this).attr("data-time",++time);
+                        $(this).html("<span class=\"glyphicon glyphicon-heart-empty\" class=\"badge\"> </span>   " + $(this).attr("data-time")); 
+                    case "NO_YOUSELF":
+                        alert(" can't thumb by yourself")
+                    case "ERROR":   
+                        alert(" have error ")
+                    }                    
+                }
+            });
+    });
+    
+    
+    
+    
+    
+     /* -----    点赞操作 ---------*/
+    $('.make_a_thumb').click(function(){
+        alert("you are in make_a_thumb")
+        $(this).attr("disabled","true")       
+        // -- 使用Ajax技术，在后台对点赞结果加1
+        $.post('/kb_make_thumb','
+            kbid=' + $(this).parent().parent().parent().attr("id"),
+            function(data,status){
+                var time = $(this).attr("data-time");
+                $(this).attr("data-time",++time);
+                $(this).html("<span class=\"glyphicon glyphicon-heart-empty\" class=\"badge\"> </span>   " + $(this).attr("data-time"));                    
+            });
+        });
+        
+        
+  //   点赞的另一种写法  
+$(function(){
+    $('.make_a_thumb').bind('click',function(){
+        $.ajax({type:"POST",
+                url:"/kb_make_thumb",
+                data:{kbid:$(this).parent().parent().parent().attr("id")},
+                dataType:"json",
+                success: function(data) {
+                   alert("callback " + data.msg )
+                   }
+        });
+    })
+
+})
+        
